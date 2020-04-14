@@ -1,15 +1,11 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import Layout from 'components/Layout'
 import PropTypes from 'prop-types'
-import Content from 'components/Content'
+import Login from '../components/Login'
 
 function DashboardIndex({ data, location }) {
-	const { title } = data.site.siteMetadata
 	return (
-		<Layout location={location} title={title}>
-			<Content />
-		</Layout>
+		<Login />
 	)
 }
 DashboardIndex.propTypes = {

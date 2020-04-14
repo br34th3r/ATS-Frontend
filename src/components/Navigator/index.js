@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import { logout } from '../../services/auth'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
@@ -13,28 +14,17 @@ import ListItemText from '@material-ui/core/ListItemText'
 import HomeIcon from '@material-ui/icons/Home'
 import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
 import PeopleIcon from '@material-ui/icons/People'
-import DnsRoundedIcon from '@material-ui/icons/DnsRounded'
 import AssessmentIcon from '@material-ui/icons/Assessment';
-import PublicIcon from '@material-ui/icons/Public'
-import SettingsEthernetIcon from '@material-ui/icons/SettingsEthernet'
 import StorageIcon from '@material-ui/icons/Storage';
-import TimerIcon from '@material-ui/icons/Timer'
-import LockOpenSharpIcon from '@material-ui/icons/LockOpenSharp';
-import PhonelinkSetupIcon from '@material-ui/icons/PhonelinkSetup'
+import LockIcon from '@material-ui/icons/Lock';
 const categories = [
 	{
 		id: 'Actions',
 		children: [
-			{ id: 'Tickets', icon: <ConfirmationNumberIcon />, page: 'authentication' },
-			{ id: 'Customers', icon: <PeopleIcon />, page: 'database' },
-			{ id: 'Reports', icon: <AssessmentIcon />, page: 'storage' },
-			{ id: 'Database', icon: <StorageIcon />, page: 'ml' },
-		],
-	},
-	{
-		id: 'Information',
-		children: [
-			{ id: 'Login', icon: <LockOpenSharpIcon />, page: 'analytics' },
+			{ id: 'Tickets', icon: <ConfirmationNumberIcon />, page: 'tickets' },
+			{ id: 'Customers', icon: <PeopleIcon />, page: 'customers' },
+			{ id: 'Reports', icon: <AssessmentIcon />, page: 'reports' },
+			{ id: 'Database', icon: <StorageIcon />, page: 'database' },
 		],
 	},
 ]
@@ -80,7 +70,7 @@ const styles = theme => ({
 	},
 	textDense: {},
 	divider: {
-		marginTop: theme.spacing.unit * 2,
+		marginTop: theme.spacing(2),
 	},
 })
 
@@ -151,6 +141,25 @@ function Navigator({ classes, location = null, ...rest }) {
 								<div />
 							)
 						})}
+						<ListItem
+							button
+							onClick={logout}
+							dense
+							className={classNames(
+								classes.item,
+								classes.itemActionable,
+							)}
+						>
+							<ListItemIcon>{<LockIcon />}</ListItemIcon>
+							<ListItemText
+								classes={{
+									primary: classes.itemPrimary,
+									textDense: classes.textDense,
+								}}
+							>
+								{"Logout"}
+							</ListItemText>
+						</ListItem>
 						<Divider className={classes.divider} />
 					</React.Fragment>
 				))}

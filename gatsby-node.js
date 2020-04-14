@@ -4,7 +4,7 @@ exports.onCreateWebpackConfig = ({ actions, stage }) => {
 	// https: //github.com/gatsbyjs/gatsby/issues/6278
 	if (stage === 'develop') {
 		actions.setWebpackConfig({
-			devtool: 'cheap-module-source-map',
+			devtool: 'eval-source-map',
 		})
 	}
 
@@ -17,4 +17,16 @@ exports.onCreateWebpackConfig = ({ actions, stage }) => {
 			},
 		},
 	})
+}
+
+// Implement the Gatsby API “onCreatePage”. This is
+// called after every page is created.
+exports.onCreatePage = async ({ page, actions }) => {
+  const { createPage } = actions
+
+  // Only update the `/ats` page.
+  if (page.path.match(/^\/ats/)) {
+    page.matchPath = "/ats/content"
+    createPage(page)
+  }
 }

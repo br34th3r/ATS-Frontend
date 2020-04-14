@@ -3,7 +3,7 @@ module.exports = {
 		title: `Air Ticket Sales System`,
 		author: `Team Th1rt33n`,
 		description: `AirVia Ltd - Air Ticket Sales System Frontend`,
-		siteUrl: ``,
+		siteUrl: `https://www.joshboddy.com`,
 		social: {
 			twitter: ``,
 		},
@@ -12,5 +12,9 @@ module.exports = {
 		{
 			resolve: `gatsby-plugin-material-ui`,
 		},
+		{
+      resolve: `gatsby-plugin-create-client-paths`,
+      options: { prefixes: [`/ats/*`] },
+    },
 	],
 }

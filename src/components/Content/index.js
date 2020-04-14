@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles'
-import ContentGraphic from './ContentGraphic'
+import { getUser } from '../../services/auth'
 const styles = theme => ({
 	paper: {
 		margin: 'auto',
@@ -23,7 +23,7 @@ const styles = theme => ({
 		display: 'block',
 	},
 	addUser: {
-		marginRight: theme.spacing.unit,
+		marginRight: theme.spacing(1),
 	},
 	contentWrapper: {
 		height: 368,
@@ -45,12 +45,9 @@ function Content({ classes }) {
 					alignItems="center"
 					justify="center"
 				>
-					<Grid lg={6} xs={12} item align="center">
-						<ContentGraphic />
-					</Grid>
 					<Grid lg={6} xs={12} item>
 						<Typography component="h2" variant="display1" color="textSecondary" align="center">
-							Welcome to your new project
+							Welcome { getUser().user }
 						</Typography>
 					</Grid>
 				</Grid>

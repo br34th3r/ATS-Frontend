@@ -13,8 +13,12 @@ import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
+	container: {
+		padding: theme.spacing(3)
+	},
 	paper: {
 		padding: theme.spacing(5),
+		height: "100%"
 	},
 	formItem: {
 		fontSize: "1.5em"
@@ -41,6 +45,10 @@ class TicketsPage extends Component {
 		console.log(json)
 	}
 
+	removeBlanksCallback(json) {
+		console.log(json)
+	}
+
 	render() {
 		if (!isLoggedIn()) {
 	    navigate('/')
@@ -48,9 +56,9 @@ class TicketsPage extends Component {
 	  } else {
 			return (
 				<Layout location={this.props.location} title={this.props.data.site.siteMetadata.title}>
-					<Container>
+					<Container className={this.props.classes.container}>
 						<Grid container spacing={3}>
-							<Grid item xs={12}>
+							<Grid item xs={6}>
 								<Paper className={this.props.classes.paper}>
 									<Typography color="inherit" variant="h5">
 										{"Add Blank(s)"}
@@ -63,8 +71,31 @@ class TicketsPage extends Component {
 										successText={"Added Blanks!"}
 										failureText={"An Error Occurred"}
 										modalStyle={this.props.classes.modalStyle}
+										submitText={"Add Blank(s)"}
+										method={"post"}
 									>
 										<BlankTypeSelect className={this.props.classes.formItem} /><br />
+										<TextField type="number" name="start" id="start" placeholder="Blank Start" className={this.props.classes.formItem} /><br />
+										<TextField type="number" name="end" id="end" placeholder="Blank End" className={this.props.classes.formItem} /><br />
+									</DatabaseForm>
+								</Paper>
+							</Grid>
+							<Grid item xs={6}>
+								<Paper className={this.props.classes.paper}>
+									<Typography color="inherit" variant="h5">
+										{"Remove Blank(s)"}
+									</Typography>
+									<br />
+									<DatabaseForm
+										backendUrl={"/removeBlanks"}
+										formCallback={this.removeBlanksCallback}
+										nav={'/tickets'}
+										successText={"Removed Blanks!"}
+										failureText={"An Error Occurred"}
+										modalStyle={this.props.classes.modalStyle}
+										submitText={"Remove Blank(s)"}
+										method={"delete"}
+									>
 										<TextField type="number" name="start" id="start" placeholder="Blank Start" className={this.props.classes.formItem} /><br />
 										<TextField type="number" name="end" id="end" placeholder="Blank End" className={this.props.classes.formItem} /><br />
 									</DatabaseForm>

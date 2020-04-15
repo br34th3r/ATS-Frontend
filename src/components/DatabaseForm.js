@@ -31,7 +31,7 @@ class DatabaseForm extends Component {
   }
 
   formCallback = json => {
-    if (!json.errors) {
+    if (json.ok) {
       this.setState({
         success: true
       })
@@ -45,9 +45,8 @@ class DatabaseForm extends Component {
   handleSubmit = event => {
     event.preventDefault()
     this.props.formCallback(this.state)
-    console.log(`${process.env.BACKEND_URL}:${process.env.BACKEND_PORT}${this.props.backendUrl}`)
     fetch(`${process.env.BACKEND_URL}:${process.env.BACKEND_PORT}${this.props.backendUrl}`, {
-      method: "POST",
+      method: this.props.method,
       mode: "cors",
       redirect: 'follow',
       headers: {
@@ -57,6 +56,7 @@ class DatabaseForm extends Component {
     })
     .then(res => res.json())
     .then(json => this.formCallback(json))
+    .catch(err => console.log(err))
   }
 
   render() {
@@ -67,7 +67,7 @@ class DatabaseForm extends Component {
     return (
       <>
       <form
-        method="post"
+        method={this.props.method}
         onSubmit={event => {
           this.handleSubmit(event)
           navigate('/tickets')
@@ -76,7 +76,7 @@ class DatabaseForm extends Component {
         <FormControl className={this.props.className ? this.props.className : null}>
           {childrenWithHandler}
           <Button type="submit" color="primary" onClick={this.handleOpen}>
-            {"Add Blank(s)"}
+            {this.props.submitText}
           </Button>
         </FormControl>
       </form>

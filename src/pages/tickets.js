@@ -59,47 +59,7 @@ class TicketsPage extends Component {
 					<Container className={this.props.classes.container}>
 						<Grid container spacing={3}>
 							<Grid item xs={6}>
-								<Paper className={this.props.classes.paper}>
-									<Typography color="inherit" variant="h5">
-										{"Add Blank(s)"}
-									</Typography>
-									<br />
-									<DatabaseForm
-										backendUrl={"/addBlanks"}
-										formCallback={this.addBlanksCallback}
-										nav={'/tickets'}
-										successText={"Added Blanks!"}
-										failureText={"An Error Occurred"}
-										modalStyle={this.props.classes.modalStyle}
-										submitText={"Add Blank(s)"}
-										method={"post"}
-									>
-										<BlankTypeSelect className={this.props.classes.formItem} /><br />
-										<TextField type="number" name="start" id="start" placeholder="Blank Start" className={this.props.classes.formItem} /><br />
-										<TextField type="number" name="end" id="end" placeholder="Blank End" className={this.props.classes.formItem} /><br />
-									</DatabaseForm>
-								</Paper>
-							</Grid>
-							<Grid item xs={6}>
-								<Paper className={this.props.classes.paper}>
-									<Typography color="inherit" variant="h5">
-										{"Remove Blank(s)"}
-									</Typography>
-									<br />
-									<DatabaseForm
-										backendUrl={"/removeBlanks"}
-										formCallback={this.removeBlanksCallback}
-										nav={'/tickets'}
-										successText={"Removed Blanks!"}
-										failureText={"An Error Occurred"}
-										modalStyle={this.props.classes.modalStyle}
-										submitText={"Remove Blank(s)"}
-										method={"delete"}
-									>
-										<TextField type="number" name="start" id="start" placeholder="Blank Start" className={this.props.classes.formItem} /><br />
-										<TextField type="number" name="end" id="end" placeholder="Blank End" className={this.props.classes.formItem} /><br />
-									</DatabaseForm>
-								</Paper>
+								
 							</Grid>
 						</Grid>
 					</Container>

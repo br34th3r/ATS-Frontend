@@ -16,12 +16,14 @@ import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
 import PeopleIcon from '@material-ui/icons/People'
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import StorageIcon from '@material-ui/icons/Storage';
+import ConfirmationNumberOutlinedIcon from '@material-ui/icons/ConfirmationNumberOutlined';
 import LockIcon from '@material-ui/icons/Lock';
 const categories = [
 	{
 		id: 'Actions',
 		children: [
 			{ id: 'Tickets', icon: <ConfirmationNumberIcon />, page: 'tickets' },
+			{ id: 'Blanks', icon: <ConfirmationNumberOutlinedIcon />, page: 'blanks'},
 			{ id: 'Customers', icon: <PeopleIcon />, page: 'customers' },
 			{ id: 'Reports', icon: <AssessmentIcon />, page: 'reports' },
 			{ id: 'Database', icon: <StorageIcon />, page: 'database' },

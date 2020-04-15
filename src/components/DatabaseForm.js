@@ -42,6 +42,15 @@ class DatabaseForm extends Component {
     }
   }
 
+  handleGETSubmit = event => {
+    event.preventDefault()
+    fetch(`${process.env.BACKEND_URL}:${process.env.BACKEND_PORT}${this.props.backendUrl}`)
+    .then(res => res.json())
+    .then(json => this.formCallback(json))
+    .catch(err => console.log(err))
+    return false
+  }
+
   handleSubmit = event => {
     event.preventDefault()
     this.props.formCallback(this.state)
@@ -52,11 +61,12 @@ class DatabaseForm extends Component {
       headers: {
         'Content-type': 'application/json'
       },
-      body: JSON.stringify(this.state)
+      body: this.state ? JSON.stringify(this.state) : null
     })
     .then(res => res.json())
     .then(json => this.formCallback(json))
     .catch(err => console.log(err))
+    return false
   }
 
   render() {
@@ -69,13 +79,13 @@ class DatabaseForm extends Component {
       <form
         method={this.props.method}
         onSubmit={event => {
-          this.handleSubmit(event)
-          navigate('/tickets')
+          (this.props.method.toUpperCase() === "GET") ? this.handleGETSubmit(event) : this.handleSubmit(event)
+          return false
         }}
       >
         <FormControl className={this.props.className ? this.props.className : null}>
           {childrenWithHandler}
-          <Button type="submit" color="primary" onClick={this.handleOpen}>
+          <Button variant="outlined" type="submit" color="primary" onClick={this.handleOpen}>
             {this.props.submitText}
           </Button>
         </FormControl>

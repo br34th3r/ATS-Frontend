@@ -36,19 +36,6 @@ const styles = theme => ({
 })
 
 class TicketsPage extends Component {
-	constructor(props, context) {
-		super(props, context)
-		this.addBlanksCallback = this.addBlanksCallback.bind(this)
-	}
-
-	addBlanksCallback(json) {
-		console.log(json)
-	}
-
-	removeBlanksCallback(json) {
-		console.log(json)
-	}
-
 	render() {
 		if (!isLoggedIn()) {
 	    navigate('/')
@@ -59,7 +46,7 @@ class TicketsPage extends Component {
 					<Container className={this.props.classes.container}>
 						<Grid container spacing={3}>
 							<Grid item xs={6}>
-								
+
 							</Grid>
 						</Grid>
 					</Container>

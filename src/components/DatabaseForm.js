@@ -53,7 +53,6 @@ class DatabaseForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    this.props.formCallback(this.state)
     fetch(`${process.env.BACKEND_URL}:${process.env.BACKEND_PORT}${this.props.backendUrl}`, {
       method: this.props.method,
       mode: "cors",
@@ -64,7 +63,10 @@ class DatabaseForm extends Component {
       body: this.state ? JSON.stringify(this.state) : null
     })
     .then(res => res.json())
-    .then(json => this.formCallback(json))
+    .then(json => {
+      this.formCallback(json)
+      this.props.formCallback(this.state)
+    })
     .catch(err => console.log(err))
     return false
   }

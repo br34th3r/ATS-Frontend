@@ -36,17 +36,28 @@ const styles = theme => ({
 })
 
 class CustomersPage extends Component {
-	constructor(props, context) {
-		super(props, context)
-		this.addCustomersCallback = this.addCustomersCallback.bind(this)
+	state = {
+		customers: []
 	}
 
-	addCustomersCallback(json) {
-		console.log(json)
+	constructor(props) {
+		super(props)
+		this.getCustomers = this.getCustomers.bind(this)
 	}
 
-	removeCustomersCallback(json) {
-		console.log(json)
+	async getCustomers() {
+		fetch(`${process.env.BACKEND_URL}:${process.env.BACKEND_PORT}/customers`)
+		.then(res => res.json())
+		.then(json => {
+			this.setState({
+				customers: json.customers
+			})
+		})
+		.catch(err => console.log(err))
+	}
+
+	componentDidMount() {
+		this.getCustomers()
 	}
 
 	render() {
@@ -66,7 +77,7 @@ class CustomersPage extends Component {
 									<br />
 									<DatabaseForm
 										backendUrl={"/addCustomer"}
-										formCallback={this.addCustomersCallback}
+										formCallback={this.getCustomers}
 										nav={'/customers'}
 										successText={"Added Customer!"}
 										failureText={"An Error Occurred"}
@@ -86,7 +97,7 @@ class CustomersPage extends Component {
 									<Typography color="inherit" variant="h5">
 										{"Customers"}
 									</Typography>
-									<CustomersList />
+									<CustomersList customers={this.state.customers}/>
 								</Paper>
 							</Grid>
 						</Grid>

@@ -1,4 +1,9 @@
 const path = require('path')
+
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 exports.onCreateWebpackConfig = ({ actions, stage }) => {
 	// enable sourcemaps on dev
 	// https: //github.com/gatsbyjs/gatsby/issues/6278

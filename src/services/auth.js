@@ -12,7 +12,7 @@ const setUser = user =>
   window.localStorage.setItem("ats-system-user", JSON.stringify(user))
 
 export const handleLogin = ({ username, password }) => {
-  fetch('http://localhost:80/login', {
+  fetch(`${process.env.BACKEND_URL}:${process.env.BACKEND_PORT}/login`, {
     method: "POST",
     mode: "cors",
     redirect: 'follow',

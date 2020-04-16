@@ -24,7 +24,7 @@ export const handleLogin = ({ username, password }) => {
   .then(result => result.json())
   .then(json => {
     if (!json.errors) {
-      setUser(json)
+      setUser(json.user);
     }
   })
   .catch(err => console.log(err))

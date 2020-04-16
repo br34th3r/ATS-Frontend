@@ -23,7 +23,7 @@ class CustomersList extends React.Component {
                 <td>{ customer.email }</td>
                 <td>{ customer.alias }</td>
                 <td>{ customer.discountStatus }</td>
-                <td>{ customer.discountStatus != "NONE" ? "VALUED" : "REGULAR" }</td>
+                <td>{ customer.discountStatus !== "NONE" ? "VALUED" : "REGULAR" }</td>
               </tr>
             )
           })}

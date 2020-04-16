@@ -12,9 +12,5 @@ module.exports = {
 		{
 			resolve: `gatsby-plugin-material-ui`,
 		},
-		{
-      resolve: `gatsby-plugin-create-client-paths`,
-      options: { prefixes: [`/ats/*`] },
-    },
 	],
 }

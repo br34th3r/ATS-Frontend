@@ -4,12 +4,20 @@ import Layout from 'components/Layout'
 import { isLoggedIn } from '../services/auth'
 import { navigate } from 'gatsby'
 import DatabaseForm from '../components/DatabaseForm'
-import BlankTypeSelect from '../components/BlankTypeSelect'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
+import CustomerSelect from '../components/CustomerSelect'
+import SaleTypeSelect from '../components/SaleTypeSelect'
+import BlankSelect from '../components/BlankSelect'
+import FromToSelect from '../components/FromToSelect'
+import CostSelect from '../components/CostSelect'
+import PaymentMethodSelect from '../components/PaymentMethodSelect'
+import CardDetailsInput from '../components/CardDetailsInput'
+import TaxesSelect from '../components/TaxesSelect'
+import PayLaterCheckbox from '../components/PayLaterCheckbox'
 import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
@@ -21,7 +29,7 @@ const styles = theme => ({
 		height: "100%"
 	},
 	formItem: {
-		fontSize: "1.5em"
+		fontSize: "1.2em",
 	},
 	modalStyle: {
     position: 'absolute',
@@ -36,6 +44,10 @@ const styles = theme => ({
 })
 
 class TicketsPage extends Component {
+	addSoldTicketCallback(json) {
+		console.log(json)
+	}
+
 	render() {
 		if (!isLoggedIn()) {
 	    navigate('/')
@@ -46,7 +58,60 @@ class TicketsPage extends Component {
 					<Container className={this.props.classes.container}>
 						<Grid container spacing={3}>
 							<Grid item xs={6}>
-
+								<Paper className={this.props.classes.paper}>
+									<Grid container spacing={3}>
+										<Grid item xs={6}>
+											<Typography color="inherit" variant="h5">
+												{"Record a Sale"}
+											</Typography>
+											<br />
+											<DatabaseForm
+												backendUrl={"/addSoldTicket"}
+												formCallback={this.addSoldTicketCallback}
+												nav={'/tickets'}
+												successText={"Added a Sold Ticket!"}
+												failureText={"An Error Occurred"}
+												modalStyle={this.props.classes.modalStyle}
+												submitText={"Record Sale"}
+												method={"post"}
+											>
+												<CustomerSelect className={this.props.classes.formItem} /><br />
+												<SaleTypeSelect className={this.props.classes.formItem} /><br /><br />
+												<BlankSelect className={this.props.classes.formItem} /><br />
+												<CostSelect className={this.props.classes.formItem} /><br />
+												<PaymentMethodSelect className={this.props.classes.formItem} /><br />
+												<CardDetailsInput className={this.props.classes.formItem} /><br />
+												<FromToSelect className={this.props.classes.formItem} /><br />
+												<TaxesSelect className={this.props.classes.formItem} /><br />
+												<PayLaterCheckbox className={this.props.classes.formItem} /><br />
+											</DatabaseForm>
+										</Grid>
+									</Grid>
+								</Paper>
+							</Grid>
+							<Grid item xs={6}>
+								<Paper className={this.props.classes.paper}>
+									<Typography color="inherit" variant="h5">
+										{"Refund a Ticket"}
+									</Typography><br />
+									<DatabaseForm
+										backendUrl={"/refundSoldTicket"}
+										formCallback={this.refundSoldTicketCallback}
+										nav={'/tickets'}
+										successText={"Refunded Ticket!"}
+										failureText={"An Error Occurred"}
+										modalStyle={this.props.classes.modalStyle}
+										submitText={"Refund Ticket"}
+										method={"post"}
+									>
+										<TextField
+											id="ticket-id-select"
+											name="ticketID"
+											placeholder="Ticket ID"
+											className={this.props.classes.formItem}
+										/><br />
+									</DatabaseForm>
+								</Paper>
 							</Grid>
 						</Grid>
 					</Container>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { navigate } from 'gatsby'
+import { getUser } from '../services/auth'
 import {
   FormControl,
   Button,
@@ -9,7 +9,9 @@ import {
 class DatabaseForm extends Component {
   state = {
     open: false,
-    success: false
+    success: false,
+    errors: "None",
+    userID: getUser()._id
   }
 
   handleOpen = () => {
@@ -25,6 +27,7 @@ class DatabaseForm extends Component {
   };
 
   handleUpdate = event => {
+    console.log(event.target.value);
     this.setState({
       [event.target.name]: event.target.value,
     })
@@ -33,11 +36,13 @@ class DatabaseForm extends Component {
   formCallback = json => {
     if (json.ok) {
       this.setState({
-        success: true
+        success: true,
+        errors: "None"
       })
     } else {
       this.setState({
-        success: false
+        success: false,
+        errors: json.errors
       })
     }
   }
@@ -64,6 +69,7 @@ class DatabaseForm extends Component {
     })
     .then(res => res.json())
     .then(json => {
+      console.log(json)
       this.formCallback(json)
       this.props.formCallback(this.state)
     })
@@ -101,7 +107,7 @@ class DatabaseForm extends Component {
         <div className={this.props.modalStyle}>
           <h2 id="simple-modal-title">Form Submitted</h2>
           <p id="simple-modal-description">
-            {this.state.success ? this.props.successText : this.props.failureText }
+            {this.state.success ? this.props.successText : `${this.props.failureText} - ${this.state.errors}` }
           </p>
         </div>
       </Modal>

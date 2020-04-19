@@ -44,55 +44,50 @@ class DatabasePage extends Component {
 	}
 
 	render() {
-		if (!isLoggedIn()) {
-	    navigate('/')
-			return null
-	  } else {
-			return (
-				<Layout location={this.props.location} title={this.props.data.site.siteMetadata.title}>
-					<Container className={this.props.classes.container}>
-            <Paper className={this.props.classes.paper}>
-  						<Grid container spacing={3}>
-  							<Grid item xs={6}>
-                  <Typography color="inherit" variant="h5">
-                    {"Create a Backup of the Database"}
-                  </Typography>
-                  <br />
-                  <DatabaseForm
-                    backendUrl={"/database/backup"}
-                    formCallback={this.backupDatabaseCallback}
-                    nav={'/database'}
-                    successText={"Database Successfully Backed Up!"}
-                    failureText={"An Error Occurred"}
-                    modalStyle={this.props.classes.modalStyle}
-                    submitText={"Backup Database"}
-                    method={"get"}
-                  />
-  							</Grid>
-                <Grid item xs={6}>
-                  <Typography color="inherit" variant="h5">
-                    {"Restore Database from a Backup"}
-                  </Typography>
-                  <br />
-                  <DatabaseForm
-                    backendUrl={"/database/restore"}
-                    formCallback={this.restoreDatabaseCallback}
-                    nav={'/database'}
-                    successText={"Restored Database!"}
-                    failureText={"An Error Occurred"}
-                    modalStyle={this.props.classes.modalStyle}
-                    submitText={"Restore Database"}
-                    method={"post"}
-                  >
-                    <TextField type="text" name="backup" id="backup" placeholder="Backup Number" className={this.props.classes.formItem} /><br />
-                  </DatabaseForm>
-                </Grid>
-  						</Grid>
-            </Paper>
-					</Container>
-				</Layout>
-			)
-		}
+		return (
+			<Layout location={this.props.location} title={this.props.data.site.siteMetadata.title}>
+				<Container className={this.props.classes.container}>
+          <Paper className={this.props.classes.paper}>
+						<Grid container spacing={3}>
+							<Grid item xs={6}>
+                <Typography color="inherit" variant="h5">
+                  {"Create a Backup of the Database"}
+                </Typography>
+                <br />
+                <DatabaseForm
+                  backendUrl={"/database/backup"}
+                  formCallback={this.backupDatabaseCallback}
+                  nav={'/database'}
+                  successText={"Database Successfully Backed Up!"}
+                  failureText={"An Error Occurred"}
+                  modalStyle={this.props.classes.modalStyle}
+                  submitText={"Backup Database"}
+                  method={"get"}
+                />
+							</Grid>
+              <Grid item xs={6}>
+                <Typography color="inherit" variant="h5">
+                  {"Restore Database from a Backup"}
+                </Typography>
+                <br />
+                <DatabaseForm
+                  backendUrl={"/database/restore"}
+                  formCallback={this.restoreDatabaseCallback}
+                  nav={'/database'}
+                  successText={"Restored Database!"}
+                  failureText={"An Error Occurred"}
+                  modalStyle={this.props.classes.modalStyle}
+                  submitText={"Restore Database"}
+                  method={"post"}
+                >
+                  <TextField type="text" name="backup" id="backup" placeholder="Backup Number" className={this.props.classes.formItem} /><br />
+                </DatabaseForm>
+              </Grid>
+						</Grid>
+          </Paper>
+				</Container>
+			</Layout>
+		)
 	}
 }
 

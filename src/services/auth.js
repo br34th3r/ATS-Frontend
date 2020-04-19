@@ -11,9 +11,14 @@ export const getUser = () =>
 const setUser = user =>
   window.localStorage.setItem("ats-system-user", JSON.stringify(user))
 
+export const isLoggedIn = () => {
+  const user = getUser()
+  return !!user.username
+}
+
 export const handleLogin = ({ username, password }) => {
   fetch(`${process.env.BACKEND_URL}:${process.env.BACKEND_PORT}/login`, {
-    method: "POST",
+    method: "post",
     mode: "cors",
     redirect: 'follow',
     headers: {
@@ -23,26 +28,26 @@ export const handleLogin = ({ username, password }) => {
   })
   .then(result => result.json())
   .then(json => {
-    if (!json.errors) {
-      setUser(json.user);
+    if (json.errors) {
+      console.log(json.errors);
+    } else {
+      console.log("Check!");
+      setUser(json.session);
+      navigate('/');
     }
   })
   .catch(err => console.log(err))
 }
 
-export const isLoggedIn = () => {
-  const user = getUser()
-
-  return !!user.username
-}
-
 export const logout = function() {
-  setUser({})
   fetch('http://localhost:80/logout', {
     mathod: "GET",
     mode: "cors",
     redirect: 'follow'
   })
-  .then(navigate('/'))
+  .then(() => {
+    setUser({});
+    navigate('/');
+  })
   .catch(err => console.log(err))
 }

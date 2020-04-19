@@ -20,10 +20,6 @@ class Login extends React.Component {
   }
 
   render() {
-    if (isLoggedIn()) {
-      navigate(`/tickets`)
-    }
-
     return (
       <>
         <h1>Log in</h1>
@@ -31,7 +27,6 @@ class Login extends React.Component {
           method="post"
           onSubmit={event => {
             this.handleSubmit(event)
-            navigate(`/tickets`)
           }}
         >
           <label>

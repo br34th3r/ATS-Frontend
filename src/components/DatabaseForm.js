@@ -10,8 +10,7 @@ class DatabaseForm extends Component {
   state = {
     open: false,
     success: false,
-    errors: "None",
-    userID: getUser()._id
+    errors: "None"
   }
 
   handleOpen = () => {

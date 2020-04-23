@@ -8,7 +8,6 @@ class CustomersList extends React.Component {
           <tr>
             <th>Name</th>
             <th>Surname</th>
-            <th>Email</th>
             <th>Alias</th>
             <th>Discount Status</th>
             <th>Customer Type</th>
@@ -20,7 +19,6 @@ class CustomersList extends React.Component {
               <tr key={ customer._id }>
                 <td>{ customer.name }</td>
                 <td>{ customer.surname }</td>
-                <td>{ customer.email }</td>
                 <td>{ customer.alias }</td>
                 <td>{ customer.discountStatus }</td>
                 <td>{ customer.discountStatus !== "NONE" ? "VALUED" : "REGULAR" }</td>

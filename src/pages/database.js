@@ -83,6 +83,31 @@ class DatabasePage extends Component {
                   <TextField type="text" name="backup" id="backup" placeholder="Backup Number" className={this.props.classes.formItem} /><br />
                 </DatabaseForm>
               </Grid>
+            </Grid>
+          </Paper>
+          <br />
+          <Paper className={this.props.classes.paper}>
+            <Grid container spacing={3}>
+              <Grid item xs={12}>
+                <Typography color="inherit" variant="h5">
+                  {"Add a System User"}
+                </Typography>
+                <DatabaseForm
+                  backendUrl={"/addUser"}
+                  formCallback={this.addUserCallback}
+                  nav={'/database'}
+                  successText={"Added User!"}
+                  failureText={"An Error Occurred"}
+                  modalStyle={this.props.classes.modalStyle}
+                  submitText={"Add User"}
+                  method={"post"}
+                >
+                  <TextField type="text" name="username" id="username" placeholder="ID" className={this.props.classes.formItem} /><br />
+                  <TextField type="password" name="password" id="password" placeholder="password" className={this.props.classes.formItem} /><br />
+                  <TextField type="text" name="access" id="access" placeholder="Access Rights" className={this.props.classes.formItem} /><br />
+                  <TextField type="text" name="name" id="name" placeholder="Name (Optional)" className={this.props.classes.formItem} /><br />
+                </DatabaseForm>
+              </Grid>
 						</Grid>
           </Paper>
 				</Container>

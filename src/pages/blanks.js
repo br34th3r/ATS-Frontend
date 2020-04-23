@@ -124,6 +124,7 @@ class BlanksPage extends Component {
 										submitText={"Remove Blank(s)"}
 										method={"delete"}
 									>
+										<BlankTypeSelect className={this.props.classes.formItem} /><br />
 										<TextField type="number" name="start" id="start" placeholder="Blank Start" className={this.props.classes.formItem} /><br />
 										<TextField type="number" name="end" id="end" placeholder="Blank End" className={this.props.classes.formItem} /><br />
 									</DatabaseForm>

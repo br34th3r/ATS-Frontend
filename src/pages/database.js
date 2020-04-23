@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { graphql } from 'gatsby'
 import Layout from 'components/Layout'
-import { isLoggedIn } from '../services/auth'
-import { navigate } from 'gatsby'
 import DatabaseForm from '../components/DatabaseForm'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
@@ -91,7 +89,7 @@ class DatabasePage extends Component {
               <Grid item xs={12}>
                 <Typography color="inherit" variant="h5">
                   {"Add a System User"}
-                </Typography>
+                </Typography><br />
                 <DatabaseForm
                   backendUrl={"/addUser"}
                   formCallback={this.addUserCallback}

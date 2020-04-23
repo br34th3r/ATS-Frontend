@@ -103,7 +103,7 @@ class DatabasePage extends Component {
                   method={"post"}
                 >
                   <TextField type="text" name="username" id="username" placeholder="ID" className={this.props.classes.formItem} /><br />
-                  <TextField type="password" name="password" id="password" placeholder="password" className={this.props.classes.formItem} /><br />
+                  <TextField type="password" name="password" id="password" placeholder="Password" className={this.props.classes.formItem} /><br />
                   <TextField type="text" name="access" id="access" placeholder="Access Rights" className={this.props.classes.formItem} /><br />
                   <TextField type="text" name="name" id="name" placeholder="Name (Optional)" className={this.props.classes.formItem} /><br />
                 </DatabaseForm>

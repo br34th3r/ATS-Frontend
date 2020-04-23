@@ -1,6 +1,11 @@
 import React from "react"
 import { navigate } from "gatsby"
 import { handleLogin, isLoggedIn } from "../services/auth"
+import Paper from '@material-ui/core/Paper'
+import FormControl from '@material-ui/core/FormControl'
+import Input from '@material-ui/core/Input'
+import InputLabel from '@material-ui/core/InputLabel'
+import Button from '@material-ui/core/Button'
 
 class Login extends React.Component {
   state = {
@@ -21,29 +26,26 @@ class Login extends React.Component {
 
   render() {
     return (
-      <>
-        <h1>Log in</h1>
+      <Paper className={this.props.classes.paper}>
         <form
           method="post"
           onSubmit={event => {
             this.handleSubmit(event)
           }}
         >
-          <label>
-            Username
-            <input type="text" name="username" onChange={this.handleUpdate} />
-          </label>
-          <label>
-            Password
-            <input
-              type="password"
-              name="password"
-              onChange={this.handleUpdate}
-            />
-          </label>
-          <input type="submit" value="Log In" />
+          <FormControl>
+            <InputLabel htmlFor="username">Username</InputLabel>
+            <Input onChange={this.handleUpdate} id="username" name="username" />
+          </FormControl><br />
+          <FormControl>
+            <InputLabel htmlFor="password">Password</InputLabel>
+            <Input type="password" onChange={this.handleUpdate} id="password" name="password" />
+          </FormControl><br /><br />
+          <Button variant="outlined" type="submit" color="primary">
+            Login
+          </Button>
         </form>
-      </>
+      </Paper>
     )
   }
 }

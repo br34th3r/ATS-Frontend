@@ -66,7 +66,7 @@ class ReportsPage extends Component {
 			return null
 	  } else {
 			return (
-				<Layout location={this.props.location} title={this.props.data.site.siteMetadata.title}>
+				<Layout location={this.props.location} title={"Reports"}>
 					<Container className={this.props.classes.container}>
 						<Grid container spacing={3}>
 							<Grid item xs={6}>

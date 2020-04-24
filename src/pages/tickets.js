@@ -44,8 +44,23 @@ const styles = theme => ({
 })
 
 class TicketsPage extends Component {
+	state = {
+		paymentMethod: "CASH"
+	}
+
+	constructor(props) {
+		super(props);
+		this.paymentMethodCallback = this.paymentMethodCallback.bind(this);
+	}
+
 	addSoldTicketCallback(json) {
 		console.log(json)
+	}
+
+	paymentMethodCallback(event) {
+		this.setState({
+			paymentMethod: event.target.value
+		})
 	}
 
 	render() {
@@ -79,8 +94,8 @@ class TicketsPage extends Component {
 												<SaleTypeSelect className={this.props.classes.formItem} /><br /><br />
 												<BlankSelect className={this.props.classes.formItem} /><br />
 												<CostSelect className={this.props.classes.formItem} /><br />
-												<PaymentMethodSelect className={this.props.classes.formItem} /><br />
-												<CardDetailsInput className={this.props.classes.formItem} /><br />
+												<PaymentMethodSelect className={this.props.classes.formItem} callback={this.paymentMethodCallback} /><br />
+												<CardDetailsInput className={this.props.classes.formItem} paymentMethod={this.state.paymentMethod} /><br />
 												<FromToSelect className={this.props.classes.formItem} /><br />
 												<TaxesSelect className={this.props.classes.formItem} /><br />
 												<PayLaterCheckbox className={this.props.classes.formItem} /><br />

@@ -11,6 +11,7 @@ import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles'
 import CustomersList from '../components/CustomersList'
+import DisplayLatePayments from '../components/DisplayLatePayments'
 
 const styles = theme => ({
 	container: {
@@ -95,9 +96,17 @@ class CustomersPage extends Component {
 							<Grid item xs={6}>
 								<Paper className={this.props.classes.paper}>
 									<Typography color="inherit" variant="h5">
+										{"Late Payments"}
+									</Typography><br />
+									<DisplayLatePayments classes={this.props.classes} />
+								</Paper>
+							</Grid>
+							<Grid item xs={12}>
+								<Paper className={this.props.classes.paper}>
+									<Typography color="inherit" variant="h5">
 										{"Customers"}
-									</Typography>
-									<CustomersList customers={this.state.customers}/>
+									</Typography><br />
+									<CustomersList classes={this.props.classes} customers={this.state.customers}/>
 								</Paper>
 							</Grid>
 						</Grid>

@@ -67,7 +67,7 @@ class BlanksPage extends Component {
 	}
 
 	findBlanksCallback(json) {
-		if(json.errors != "None") {
+		if(json.errors !== "None") {
 			this.setState({
 				errors: json.errors
 			})
@@ -149,7 +149,7 @@ class BlanksPage extends Component {
 									>
 										<BlankTypeSelect className={this.props.classes.formItem} /><br />
 										<TextField type="number" name="blankNumber" id="blankNumber" placeholder="Blank Number" className={this.props.classes.formItem} /><br />
-									</DatabaseForm>
+									</DatabaseForm><br />
 									<TableContainer component={Paper}>
 							      <Table className={this.props.classes.table} aria-label="simple table">
 							        <TableHead>
@@ -162,7 +162,7 @@ class BlanksPage extends Component {
 							          </TableRow>
 							        </TableHead>
 							        <TableBody>
-							          {this.state.ticket != null ? (
+							          {this.state.ticket !== null ? (
 							            <TableRow key={this.state.ticket._id}>
 							              <TableCell component="th" scope="row">
 							                {this.state.ticket._id}

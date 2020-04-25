@@ -56,6 +56,7 @@ class BlanksPage extends Component {
 		this.addBlanksCallback = this.addBlanksCallback.bind(this);
 		this.removeBlanksCallback = this.removeBlanksCallback.bind(this);
 		this.findBlanksCallback = this.findBlanksCallback.bind(this);
+		this.assignBlanksCallback = this.assignBlanksCallback(this);
 	}
 
 	addBlanksCallback(json) {
@@ -63,6 +64,10 @@ class BlanksPage extends Component {
 	}
 
 	removeBlanksCallback(json) {
+		console.log(json)
+	}
+
+	assignBlanksCallback(json){
 		console.log(json)
 	}
 
@@ -176,6 +181,29 @@ class BlanksPage extends Component {
 							        </TableBody>
 							      </Table>
 							    </TableContainer>
+								</Paper>
+							</Grid>
+							<Grid item xs={6}>
+								<Paper className={this.props.classes.paper}>
+									<Typography color="inherit" variant="h5">
+										{"Assign Blank(s)"}
+									</Typography>
+									<br />
+									<DatabaseForm
+										backendUrl={"/blanks/assign"}
+										formCallback={this.assignBlanksCallback}
+										nav={'/blanks'}
+										successText={"Assigned Blanks!"}
+										failureText={"An Error Occurred"}
+										modalStyle={this.props.classes.modalStyle}
+										submitText={"Assign Blanks"}
+										method={"post"}
+									>
+										<BlankTypeSelect className={this.props.classes.formItem} /><br />
+										<TextField type="number" name="start" id="start" placeholder="Blank Start" className={this.props.classes.formItem} /><br />
+										<TextField type="number" name="end" id="end" placeholder="Blank End" className={this.props.classes.formItem} /><br />
+										<TextField type="string" name="agentID" id="agentID" placeholder="Agent ID" className={this.props.classes.formItem} /><br />
+									</DatabaseForm>
 								</Paper>
 							</Grid>
 						</Grid>

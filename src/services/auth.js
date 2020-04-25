@@ -17,7 +17,7 @@ export const isLoggedIn = () => {
 }
 
 export const handleLogin = ({ username, password }) => {
-  fetch(`http://localhost:80/login`, {
+  fetch(`${process.env.BACKEND_URL}:${process.env.BACKEND_PORT}/login`, {
     method: "post",
     mode: "cors",
     redirect: 'follow',

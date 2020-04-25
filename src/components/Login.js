@@ -1,6 +1,5 @@
 import React from "react"
-import { navigate } from "gatsby"
-import { handleLogin, isLoggedIn } from "../services/auth"
+import { handleLogin } from "../services/auth"
 import Paper from '@material-ui/core/Paper'
 import FormControl from '@material-ui/core/FormControl'
 import Input from '@material-ui/core/Input'

@@ -10,7 +10,7 @@ class PaymentMethodSelect extends Component {
   }
 
   changePaymentMethod = event => {
-    this.props.onChange(event)
+    this.props.callback(event)
     this.setState({
       paymentMethod: event.target.value
     })

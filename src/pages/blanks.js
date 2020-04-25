@@ -47,7 +47,8 @@ const styles = theme => ({
 class BlanksPage extends Component {
 	state = {
 		found: null,
-		errors: null
+		errors: null,
+		ticket: null
 	}
 
 	constructor(props, context) {
@@ -71,13 +72,13 @@ class BlanksPage extends Component {
 	}
 
 	findBlanksCallback(json) {
-		if(json.errors) {
+		if(json.errors !== "None") {
 			this.setState({
 				errors: json.errors
 			})
 		} else {
 			this.setState({
-				foundBlanks: json.ticket
+				ticket: json.data
 			})
 		}
 	}
@@ -149,11 +150,11 @@ class BlanksPage extends Component {
 										failureText={"An Error Occurred"}
 										modalStyle={this.props.classes.modalStyle}
 										submitText={"Find Blank"}
-										method={"get"}
+										method={"post"}
 									>
 										<BlankTypeSelect className={this.props.classes.formItem} /><br />
 										<TextField type="number" name="blankNumber" id="blankNumber" placeholder="Blank Number" className={this.props.classes.formItem} /><br />
-									</DatabaseForm>
+									</DatabaseForm><br />
 									<TableContainer component={Paper}>
 							      <Table className={this.props.classes.table} aria-label="simple table">
 							        <TableHead>
@@ -166,7 +167,7 @@ class BlanksPage extends Component {
 							          </TableRow>
 							        </TableHead>
 							        <TableBody>
-							          {this.state.ticket != null ? (
+							          {this.state.ticket !== null ? (
 							            <TableRow key={this.state.ticket._id}>
 							              <TableCell component="th" scope="row">
 							                {this.state.ticket._id}

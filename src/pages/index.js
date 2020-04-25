@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { graphql } from 'gatsby'
-import PropTypes from 'prop-types'
 import Login from '../components/Login'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { getUser } from '../services/auth'
 import {
   FormControl,
   Button,
@@ -36,7 +35,8 @@ class DatabaseForm extends Component {
     if (json.ok) {
       this.setState({
         success: true,
-        errors: "None"
+        errors: "None",
+        data: json.ticket ? json.ticket : null
       })
     } else {
       this.setState({

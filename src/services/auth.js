@@ -40,7 +40,7 @@ export const handleLogin = ({ username, password }) => {
 }
 
 export const logout = function() {
-  fetch(`http://localhost:80/logout`, {
+  fetch('http://localhost:80/logout', {
     mathod: "GET",
     mode: "cors",
     redirect: 'follow'

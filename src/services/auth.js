@@ -17,7 +17,7 @@ export const isLoggedIn = () => {
 }
 
 export const handleLogin = ({ username, password }) => {
-  fetch(`${process.env.BACKEND_URL}:${process.env.BACKEND_PORT}/login`, {
+  fetch(`http://localhost:80/login`, {
     method: "post",
     mode: "cors",
     redirect: 'follow',
@@ -40,7 +40,7 @@ export const handleLogin = ({ username, password }) => {
 }
 
 export const logout = function() {
-  fetch(`${process.env.BACKEND_URL}:${process.env.BACKEND_PORT}/logout`, {
+  fetch(`http://localhost:80/logout`, {
     mathod: "GET",
     mode: "cors",
     redirect: 'follow'

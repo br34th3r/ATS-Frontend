@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { getUser } from '../services/auth'
 import {
   FormControl,
   Button,
@@ -9,7 +10,8 @@ class DatabaseForm extends Component {
   state = {
     open: false,
     success: false,
-    errors: "None"
+    errors: "None",
+    user: getUser()._id
   }
 
   handleOpen = () => {

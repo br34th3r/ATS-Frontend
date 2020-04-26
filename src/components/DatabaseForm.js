@@ -25,7 +25,6 @@ class DatabaseForm extends Component {
   };
 
   handleUpdate = event => {
-    console.log(event.target.value);
     this.setState({
       [event.target.name]: event.target.value,
     })

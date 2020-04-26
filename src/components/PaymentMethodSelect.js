@@ -10,7 +10,8 @@ class PaymentMethodSelect extends Component {
   }
 
   changePaymentMethod = event => {
-    this.props.callback(event)
+    this.props.callback(event);
+    this.props.onChange(event);
     this.setState({
       paymentMethod: event.target.value
     })
@@ -18,8 +19,7 @@ class PaymentMethodSelect extends Component {
 
   render() {
     return (
-      <FormControl>
-        <InputLabel id="payment-method-select-label">Payment Method</InputLabel>
+      <>
         <Select
           labelId="payment-method-select-label"
           id="payment-method-select"
@@ -30,8 +30,8 @@ class PaymentMethodSelect extends Component {
         >
           <MenuItem value={"CASH"}>Cash</MenuItem>
           <MenuItem value={"CARD"}>Card</MenuItem>
-        </Select><br />
-      </FormControl>
+        </Select>
+      </>
     )
   }
 }
